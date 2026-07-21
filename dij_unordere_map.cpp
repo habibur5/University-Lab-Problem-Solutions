@@ -48,14 +48,19 @@ void dijkstra(int src, unordered_map<int, vector<Edge>> &graph) {
         }
     }
 
+    
+
     cout << "\nShortest distances from source " << src << ":\n";
-    for (auto &p : dist) {
-        cout << p.first << " -> ";
-        if (p.second == INT_MAX)
-            cout << "INF";
-        else
-            cout << p.second;
-        cout << endl;
+    cout<<"|-----------------------|\n";
+    cout << "| src\t| dest\t| weight|\n|-----------------------|\n";
+
+    for (auto &p : dist){
+      if(p.second == INT_MAX){
+        cout <<"| " << src << "\t| " << p.first << "\t| " << "INF\t|"  << endl;
+      }else{
+        cout << "| " << src << "\t| " << p.first << "\t| " << p.second << "\t|" << endl;
+      }
+      cout<<"|-----------------------|\n";
     }
 }
 
@@ -88,7 +93,7 @@ int main() {
 
 
 
-    unordered_map<int, vector<Edge>> graph;
+unordered_map<int, vector<Edge>> graph;
 
 // Demo graph
 graph[0].push_back(Edge(1, 4));
@@ -106,7 +111,7 @@ graph[3].push_back(Edge(50, 3));
 graph[50].push_back(Edge(5, 2));
 
 // Ensure all vertices exist in the map
-graph[5] = {};
+graph[5];
 
 int src = 0;
 

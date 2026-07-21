@@ -16,13 +16,16 @@ void dijkstras(int src, vector<vector<Edge>> graph, int V){
   priority_queue <pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > pq;
   vector<int> dist(V, INT_MAX);
   pq.push(make_pair(0,src));
+
   dist[src] = 0;
+
 
   while(pq.size()>0){
     int u = pq.top().second;
     pq.pop();
 
     vector<Edge> edges = graph[u];
+    
     for(Edge e: edges){
       if(dist[e.v] > dist[u] + e.wt){
         dist[e.v] = dist[u] + e.wt;

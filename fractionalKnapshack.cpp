@@ -28,30 +28,24 @@ double fractionalKnapsack(vector<pair<int, int>> items, int capacity) {
         int value = item.first;
         int weight = item.second;
 
-        // Full item taken
-        if (capacity >= weight) {
+        double take = min(capacity, weight);   // Weight taken
+        
+        totalValue += ((double)value / weight) * take;
 
-            totalValue += value;
-            capacity -= weight;
+        cout << "Value = " << value
+            << ", Weight = " << weight;
 
-            cout << "Value = " << value
-                 << ", Weight = " << weight
-                 << " (Fully Taken)" << endl;
-        }
-        else {
+        if (take == weight)
+            cout << " (Fully Taken)";
+        else
+            cout << ", Fraction Taken = " << take / weight;
 
-            // Fraction taken
-            double fraction = (double)capacity / weight;
+        cout << endl;
 
-            totalValue += ((double)value / weight) * capacity;
+        capacity -= take;
 
-            cout << "Value = " << value
-                 << ", Weight = " << weight
-                 << ", Fraction Taken = "
-                 << fraction << endl;
-
+        if (capacity <= 0)
             break;
-        }
     }
 
     return totalValue;
